@@ -6,7 +6,7 @@ from pathlib import Path
 from tkinter import filedialog
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QCheckBox
 import ctypes
 
 
@@ -20,6 +20,7 @@ class UI(QMainWindow):
         self.choosePathOrganizedButton.clicked.connect(self.getPathEntryOrganized)
         self.organizeButton.clicked.connect(self.organize)
 
+
     def getPathEntry(self):
         dialog = QFileDialog()
         foo_dir = dialog.getExistingDirectory(self, 'Select an awesome directory')
@@ -30,19 +31,24 @@ class UI(QMainWindow):
         foo_dir = dialog.getExistingDirectory(self, 'Select an awesome directory')
         self.labelPathEntryOrganized.setPlainText(foo_dir)
 
+
     def organize(self):
         path = self.labelPathEntry.toPlainText()
+       # if len(path) != 0:
+        subfolders = ['Imagenes', 'Videos', 'Documentos', 'Otros']
         organizedFolderPath = self.labelPathEntryOrganized.toPlainText()
+        checkConfig = [self.chkorganizeByYear.isChecked, self.chkorganizeByMonth.isChecked()]
 
-        #Testing
+        # #Testing
         # path = "C:\\Users\\Adri\\Desktop\\pruebas"
         # organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebasFicherosExtraidos"
 
-        subfolders = ['Imagenes', 'Videos', 'Documentos', 'Otros']
         makefolders(organizedFolderPath, subfolders)
-        browseFiles(path, organizedFolderPath, subfolders)
+        browseFiles(path, organizedFolderPath, subfolders, checkConfig)
          #0 = ok, 1 = 0k, cancel
+
         ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
+
 
 def search_for_file_path():
     currdir = os.getcwd()
@@ -66,24 +72,30 @@ def deleteAllFolders(path):
     directory.rmdir()
 
 
-def browseFiles(path, organizedFolderPath, subfolders):
+def browseFiles(path, organizedFolderPath, subfolders, checkConfig):
     directory = Path(path)
     for item in directory.iterdir():
         if item.is_dir():
-            browseFiles(item, organizedFolderPath, subfolders)
+            browseFiles(item, organizedFolderPath, subfolders, checkConfig)
         else:
-            organizeFileByExtension(item, organizedFolderPath, subfolders)
+            organizeFileByExtension(item, organizedFolderPath, subfolders, checkConfig)
 
 
-def organizeFileByExtension(item, organizedFolderPath, subfolders):
-    images = [".png", ".jpg"]
+def organizeFileByExtension(item, organizedFolderPath, subfolders, checkConfig):
+    images = [".png", ".jpg", ".jpeg"]
     documents = [".doc", ".pdf", ".docx"]
     videos = [".mp4", ".mov"]
 
     extension = str(os.path.splitext(item)[1]).lower()
+    chkorganizeByYear = checkConfig[0]
+    chkorganizeByMonth = checkConfig[1]
 
     if extension in images:
-        organizeByYearAndMonth(organizedFolderPath, item, subfolders[0])
+        if (chkorganizeByMonth and chkorganizeByYear):
+            organizeByYearAndMonth(organizedFolderPath, item, subfolders[0])
+        else:
+            Path(item).rename(organizedFolderPath + "/" + subfolders[0] + "/" + item.name)
+
     elif extension in videos:
         Path(item).rename(organizedFolderPath + "/" + subfolders[1] + "/" + item.name)
     elif extension in documents:
