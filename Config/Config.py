@@ -22,3 +22,9 @@ def getConfigValue(section, row):
     value = config.get(section, row)
 
     return str(value)
+
+def getSubfolders():
+    subFolders = []
+    for i in range(1,5):
+        subFolders.append(getConfigValue("Subfolders", "folder" + str(i)))
+    return subFolders

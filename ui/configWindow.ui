@@ -439,7 +439,20 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
+    <item row="2" column="1">
+     <widget class="QPushButton" name="saveButton">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777209</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Guardar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string>Carpetas</string>
@@ -458,31 +471,31 @@
        </property>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Carpeta1</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Carpeta2</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Carpeta3</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Carpeta4</string>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>90</x>
          <y>40</y>
-         <width>201</width>
+         <width>331</width>
          <height>111</height>
         </rect>
        </property>
@@ -2219,9 +2232,9 @@
       <widget class="QSplitter" name="splitter_2">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>490</y>
-         <width>351</width>
+         <x>430</x>
+         <y>40</y>
+         <width>271</width>
          <height>21</height>
         </rect>
        </property>
@@ -2239,19 +2252,6 @@
         </property>
        </widget>
       </widget>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="saveButton">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777209</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Guardar</string>
-      </property>
      </widget>
     </item>
    </layout>

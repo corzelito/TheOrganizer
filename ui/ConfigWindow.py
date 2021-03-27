@@ -4,7 +4,7 @@ from distutils.util import strtobool
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
-from Config.Config import changeValues
+from Config.Config import changeValues, getConfigValue
 
 
 class ConfigWindowUI(QMainWindow):
@@ -12,7 +12,14 @@ class ConfigWindowUI(QMainWindow):
         super().__init__()
         uic.loadUi("ui/configWindow.ui", self)
         self.setWindowTitle("Configuracion")
+        self.loadConfig()
         self.saveButton.clicked.connect(self.saveValue)
+
+    def loadConfig(self):
+        self.txtFolder1.setPlainText(getConfigValue("Subfolders", "folder1"))
+        self.txtFolder2.setPlainText(getConfigValue("Subfolders", "folder2"))
+        self.txtFolder3.setPlainText(getConfigValue("Subfolders", "folder3"))
+        self.txtFolder4.setPlainText(getConfigValue("Subfolders", "folder4"))
 
     def saveValue(self):
         chkorganizeByYearValue = str(self.chkorganizeByYear.isChecked())
