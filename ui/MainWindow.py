@@ -14,7 +14,6 @@ class UI(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/mainWindow.ui", self)
-        # uic.loadUi("mainWindow.ui", self)
         self.choosePathEntryButton.clicked.connect(self.getPathEntry)
         self.choosePathOrganizedButton.clicked.connect(self.getPathEntryOrganized)
         self.organizeButton.clicked.connect(self.organize)
@@ -49,7 +48,6 @@ class UI(QMainWindow):
     def ConfigWindow(self):
         self.w = ConfigWindowUI()
         self.w.show()
-        #self.hide()
 
 
 

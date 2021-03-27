@@ -23,7 +23,6 @@ class FileSorter:
         extension = str(os.path.splitext(item)[1]).lower()
         chkorganizeByYear = getConfigValue("OrderBy", "orderbyyear")
         chkorganizeByMonth = getConfigValue("OrderBy", "orderbymonth")
-        # print(chkorganizeByMonth)
 
         if extension in images:
             if chkorganizeByYear == "True" and chkorganizeByMonth == "True":
