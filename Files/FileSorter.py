@@ -3,7 +3,7 @@ import datetime
 import os
 from pathlib import Path
 
-from Config.Config import getConfigValue
+from Config.Config import getConfigValue, getExtensions
 
 
 class FileSorter:
@@ -16,9 +16,9 @@ class FileSorter:
                 FileSorter.organizeFileByExtension(item, organizedFolderPath, subfolders)
 
     def organizeFileByExtension(item, organizedFolderPath, subfolders):
-        images = [".png", ".jpg", ".jpeg"]
-        documents = [".doc", ".pdf", ".docx"]
-        videos = [".mp4", ".mov"]
+        images = getExtensions("extensions", "extensionsfolder1")
+        documents = getExtensions("extensions", "extensionsfolder2")
+        videos = getExtensions("extensions", "extensionsfolder3")
 
         extension = str(os.path.splitext(item)[1]).lower()
         chkorganizeByYear = getConfigValue("OrderBy", "orderbyyear")
@@ -26,7 +26,6 @@ class FileSorter:
 
         if extension in images:
             if chkorganizeByYear == "True" and chkorganizeByMonth == "True":
-                print("entra")
                 FileSorter.organizeByYearAndMonth(organizedFolderPath, item, subfolders[0])
             else:
                 Path(item).rename(organizedFolderPath + "/" + subfolders[0] + "/" + item.name)

@@ -37,8 +37,9 @@ class UI(QMainWindow):
         organizedFolderPath = self.labelPathEntryOrganized.toPlainText()
 
         # Testing
-        path = "C:\\Users\\Adri\\Desktop\\pruebas"
-        organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
+        if path == "" and organizedFolderPath == "":
+            path = "C:\\Users\\Adri\\Desktop\\pruebas"
+            organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
         Folder.makefolders(organizedFolderPath, subfolders)
         FileSorter.browseFiles(path, organizedFolderPath, subfolders)

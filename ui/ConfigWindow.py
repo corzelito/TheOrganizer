@@ -34,4 +34,5 @@ class ConfigWindowUI(QMainWindow):
         changeValues("OrderBy", "orderbyyear", chkorganizeByYearValue)
         changeValues("OrderBy", "orderbymonth", chkorganizeByMonthValue)
         # changeValues("Subfolders", "folder1", txtFolder1)
+        # TODO PERMITIR CAMBIAR EXTENSIONES
         print("Se han guardado los valores")
