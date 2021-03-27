@@ -1,6 +1,3 @@
-import distutils
-from distutils.util import strtobool
-
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
@@ -28,7 +25,6 @@ class ConfigWindowUI(QMainWindow):
         txtFolder2 = self.txtFolder2.toPlainText()
         txtFolder3 = self.txtFolder3.toPlainText()
         txtFolder4 = self.txtFolder4.toPlainText()
-
 
         changeValues("Subfolders", "folder1", txtFolder1)
         changeValues("Subfolders", "folder2", txtFolder2)

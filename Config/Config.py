@@ -1,5 +1,6 @@
 import configparser
 
+
 def makeConfigFile():
     config = configparser.ConfigParser()
 
@@ -9,12 +10,14 @@ def makeConfigFile():
     with open('settings.ini', 'w') as configfile:
         config.write(configfile)
 
+
 def changeValues(section, row, value):
     config = configparser.ConfigParser()
     config.read('settings.ini')
     config.set(section, row, value)
     with open("settings.ini", "w") as f:
         config.write(f)
+
 
 def getConfigValue(section, row):
     config = configparser.ConfigParser()
@@ -23,8 +26,9 @@ def getConfigValue(section, row):
 
     return str(value)
 
+
 def getSubfolders():
     subFolders = []
-    for i in range(1,5):
+    for i in range(1, 5):
         subFolders.append(getConfigValue("Subfolders", "folder" + str(i)))
     return subFolders

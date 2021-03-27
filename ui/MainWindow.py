@@ -1,8 +1,8 @@
+import ctypes
 import sys
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
-import ctypes
 
 from Config.Config import getSubfolders
 from Files.FileSorter import FileSorter
@@ -36,8 +36,7 @@ class UI(QMainWindow):
         subfolders = getSubfolders()
         organizedFolderPath = self.labelPathEntryOrganized.toPlainText()
 
-
-        #Testing
+        # Testing
         path = "C:\\Users\\Adri\\Desktop\\pruebas"
         organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
@@ -49,6 +48,7 @@ class UI(QMainWindow):
     def ConfigWindow(self):
         self.w = ConfigWindowUI()
         self.w.show()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

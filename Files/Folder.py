@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 
-
 class Folder:
     def makefolders(path, subfolders):
         os.makedirs(path, exist_ok=True)
