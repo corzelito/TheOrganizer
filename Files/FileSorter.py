@@ -27,6 +27,10 @@ class FileSorter:
         if extension in images:
             if chkorganizeByYear == "True" and chkorganizeByMonth == "True":
                 FileSorter.organizeByYearAndMonth(organizedFolderPath, item, subfolders[0])
+            elif chkorganizeByYear == "True" and chkorganizeByMonth == "False":
+                FileSorter.organizeByYear(organizedFolderPath, item, subfolders[0])
+            elif chkorganizeByYear == "False" and chkorganizeByMonth == "True":
+                FileSorter.organizeByMonth(organizedFolderPath, item, subfolders[0])
             else:
                 Path(item).rename(organizedFolderPath + "/" + subfolders[0] + "/" + item.name)
 
@@ -47,5 +51,23 @@ class FileSorter:
         copyFilePath = monthFolder + "/" + item.name
 
         os.makedirs(yearFolder, exist_ok=True)
+        os.makedirs(monthFolder, exist_ok=True)
+        Path(item).rename(copyFilePath)
+
+    def organizeByYear(organizedFolderPath, item, imgSubFolder):
+        year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
+        yearFolder = organizedFolderPath + "/" + imgSubFolder + "/" + str(year)
+
+        copyFilePath = yearFolder + "/" + item.name
+
+        os.makedirs(yearFolder, exist_ok=True)
+        Path(item).rename(copyFilePath)
+
+    def organizeByMonth(organizedFolderPath, item, imgSubFolder):
+        creationMonthName = calendar.month_name[datetime.date.fromtimestamp(os.path.getmtime(item)).month].capitalize()
+        monthFolder = organizedFolderPath + "/" + imgSubFolder + "/" + creationMonthName
+
+        copyFilePath = monthFolder + "/" + item.name
+
         os.makedirs(monthFolder, exist_ok=True)
         Path(item).rename(copyFilePath)

@@ -38,6 +38,7 @@ def getSubfolders():
         subFolders.append(getConfigValue("Subfolders", "folder" + str(i)))
     return subFolders
 
+
 def getExtensions(section, row):
     extensions = getConfigValue(section, row)
     extensions = extensions.split(" , ")

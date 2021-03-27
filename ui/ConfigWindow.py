@@ -1,3 +1,5 @@
+import ast
+
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
@@ -18,6 +20,9 @@ class ConfigWindowUI(QMainWindow):
         self.txtFolder3.setPlainText(getConfigValue("Subfolders", "folder3"))
         self.txtFolder4.setPlainText(getConfigValue("Subfolders", "folder4"))
 
+        self.chkorganizeByYear.setChecked(ast.literal_eval(getConfigValue("OrderBy", "orderbyyear")))
+        self.chkorganizeByMonth.setChecked(ast.literal_eval(getConfigValue("OrderBy", "orderbymonth")))
+
     def saveValue(self):
         chkorganizeByYearValue = str(self.chkorganizeByYear.isChecked())
         chkorganizeByMonthValue = str(self.chkorganizeByMonth.isChecked())
@@ -35,4 +40,5 @@ class ConfigWindowUI(QMainWindow):
         changeValues("OrderBy", "orderbymonth", chkorganizeByMonthValue)
         # changeValues("Subfolders", "folder1", txtFolder1)
         # TODO PERMITIR CAMBIAR EXTENSIONES
+
         print("Se han guardado los valores")
