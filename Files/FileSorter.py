@@ -3,27 +3,31 @@ import datetime
 import os
 from pathlib import Path
 
+from Config.Config import getConfigValue
+
 
 class FileSorter:
-    def browseFiles(path, organizedFolderPath, subfolders, checkConfig):
+    def browseFiles(path, organizedFolderPath, subfolders):
         directory = Path(path)
         for item in directory.iterdir():
             if item.is_dir():
-                FileSorter.browseFiles(item, organizedFolderPath, subfolders, checkConfig)
+                FileSorter.browseFiles(item, organizedFolderPath, subfolders)
             else:
-                FileSorter.organizeFileByExtension(item, organizedFolderPath, subfolders, checkConfig)
+                FileSorter.organizeFileByExtension(item, organizedFolderPath, subfolders)
 
-    def organizeFileByExtension(item, organizedFolderPath, subfolders, checkConfig):
+    def organizeFileByExtension(item, organizedFolderPath, subfolders):
         images = [".png", ".jpg", ".jpeg"]
         documents = [".doc", ".pdf", ".docx"]
         videos = [".mp4", ".mov"]
 
         extension = str(os.path.splitext(item)[1]).lower()
-        chkorganizeByYear = checkConfig[0]
-        chkorganizeByMonth = checkConfig[1]
+        chkorganizeByYear = getConfigValue("OrderBy", "orderbyyear")
+        chkorganizeByMonth = getConfigValue("OrderBy", "orderbymonth")
+        # print(chkorganizeByMonth)
 
         if extension in images:
-            if chkorganizeByMonth and chkorganizeByYear:
+            if chkorganizeByYear == "True" and chkorganizeByMonth == "True":
+                print("entra")
                 FileSorter.organizeByYearAndMonth(organizedFolderPath, item, subfolders[0])
             else:
                 Path(item).rename(organizedFolderPath + "/" + subfolders[0] + "/" + item.name)

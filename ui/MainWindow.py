@@ -42,7 +42,7 @@ class UI(QMainWindow):
         organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebasFicherosExtraidos"
 
         Folder.makefolders(organizedFolderPath, subfolders)
-        FileSorter.browseFiles(path, organizedFolderPath, subfolders, checkConfig)
+        FileSorter.browseFiles(path, organizedFolderPath, subfolders)
 
         ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
 
