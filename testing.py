@@ -2,8 +2,8 @@
 
 
 # getSubfolders()
-from Config.Config import getExtensions
+from Config.Config import getExtensions, makeConfigFile
 
-# makeConfigFile()
+makeConfigFile()
 
 print(getExtensions("extensions", "extensionsfolder3"))

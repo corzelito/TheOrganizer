@@ -21,8 +21,8 @@ class FileSorter:
         videos = getExtensions("extensions", "extensionsfolder3")
 
         extension = str(os.path.splitext(item)[1]).lower()
-        chkorganizeByYear = getConfigValue("OrderBy", "orderbyyear")
-        chkorganizeByMonth = getConfigValue("OrderBy", "orderbymonth")
+        chkorganizeByYear = getConfigValue("Folder1", "orderbyyear")
+        chkorganizeByMonth = getConfigValue("Folder1", "orderbymonth")
 
         if extension in images:
             if chkorganizeByYear == "True" and chkorganizeByMonth == "True":

@@ -10,7 +10,10 @@ def makeConfigFile():
                             'extensionsFolder2': ".doc , .pdf , .docx",
                             'extensionsFolder3': ".mp4 , .mov"}
 
-    config['OrderBy'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+    config['Folder1'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+    config['Folder2'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+    config['Folder3'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+    config['Folder4'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
 
     with open('settings.ini', 'w') as configfile:
         config.write(configfile)

@@ -20,12 +20,23 @@ class ConfigWindowUI(QMainWindow):
         self.txtFolder3.setPlainText(getConfigValue("Subfolders", "folder3"))
         self.txtFolder4.setPlainText(getConfigValue("Subfolders", "folder4"))
 
-        self.chkorganizeByYear.setChecked(ast.literal_eval(getConfigValue("OrderBy", "orderbyyear")))
-        self.chkorganizeByMonth.setChecked(ast.literal_eval(getConfigValue("OrderBy", "orderbymonth")))
+        # Folder1
+        self.chkorganizeByYearFolder1.setChecked(ast.literal_eval(getConfigValue("Folder1", "orderbyyear")))
+        self.chkorganizeByMonthFolder1.setChecked(ast.literal_eval(getConfigValue("Folder1", "orderbymonth")))
+
+        # Folder2
+        self.chkorganizeByYearFolder2.setChecked(ast.literal_eval(getConfigValue("Folder2", "orderbyyear")))
+        self.chkorganizeByMonthFolder2.setChecked(ast.literal_eval(getConfigValue("Folder2", "orderbymonth")))
+
+        # Folder3
+        self.chkorganizeByYearFolder3.setChecked(ast.literal_eval(getConfigValue("Folder3", "orderbyyear")))
+        self.chkorganizeByMonthFolder3.setChecked(ast.literal_eval(getConfigValue("Folder3", "orderbymonth")))
+
+        # Folder4
+        self.chkorganizeByYearFolder4.setChecked(ast.literal_eval(getConfigValue("Folder4", "orderbyyear")))
+        self.chkorganizeByMonthFolder4.setChecked(ast.literal_eval(getConfigValue("Folder4", "orderbymonth")))
 
     def saveValue(self):
-        chkorganizeByYearValue = str(self.chkorganizeByYear.isChecked())
-        chkorganizeByMonthValue = str(self.chkorganizeByMonth.isChecked())
         txtFolder1 = self.txtFolder1.toPlainText()
         txtFolder2 = self.txtFolder2.toPlainText()
         txtFolder3 = self.txtFolder3.toPlainText()
@@ -36,9 +47,31 @@ class ConfigWindowUI(QMainWindow):
         changeValues("Subfolders", "folder3", txtFolder3)
         changeValues("Subfolders", "folder4", txtFolder4)
 
-        changeValues("OrderBy", "orderbyyear", chkorganizeByYearValue)
-        changeValues("OrderBy", "orderbymonth", chkorganizeByMonthValue)
-        # changeValues("Subfolders", "folder1", txtFolder1)
+        # Folder1
+        chkorganizeByYearValueFolder1 = str(self.chkorganizeByYearFolder1.isChecked())
+        chkorganizeByMonthValueFolder1 = str(self.chkorganizeByMonthFolder1.isChecked())
+
+        changeValues("Folder1", "orderbyyear", chkorganizeByYearValueFolder1)
+        changeValues("Folder1", "orderbymonth", chkorganizeByMonthValueFolder1)
+
+        # Folder2
+        chkorganizeByYearValueFolder2 = str(self.chkorganizeByYearFolder2.isChecked())
+        chkorganizeByMonthValueFolder2 = str(self.chkorganizeByMonthFolder2.isChecked())
+        changeValues("Folder2", "orderbyyear", chkorganizeByYearValueFolder2)
+        changeValues("Folder2", "orderbymonth", chkorganizeByMonthValueFolder2)
+
+        # Folder3
+        chkorganizeByYearValueFolder3 = str(self.chkorganizeByYearFolder3.isChecked())
+        chkorganizeByMonthValueFolder3 = str(self.chkorganizeByMonthFolder3.isChecked())
+        changeValues("Folder3", "orderbyyear", chkorganizeByYearValueFolder3)
+        changeValues("Folder3", "orderbymonth", chkorganizeByMonthValueFolder3)
+
+        # Folder4
+        chkorganizeByYearValueFolder4 = str(self.chkorganizeByYearFolder4.isChecked())
+        chkorganizeByMonthValueFolder4 = str(self.chkorganizeByMonthFolder4.isChecked())
+        changeValues("Folder4", "orderbyyear", chkorganizeByYearValueFolder4)
+        changeValues("Folder4", "orderbymonth", chkorganizeByMonthValueFolder4)
+
         # TODO PERMITIR CAMBIAR EXTENSIONES
 
         print("Se han guardado los valores")
