@@ -10,10 +10,11 @@ class Folder:
             os.makedirs(path + "/" + i, exist_ok=True)
 
     def deleteAllFolders(path):
-        directory = Path(path)
-        for item in directory.iterdir():
-            if item.is_dir():
-                Folder.deleteAllFolders(item)
-            else:
-                item.unlink()
-        directory.rmdir()
+        if os.path.exists(path):
+            directory = Path(path)
+            for item in directory.iterdir():
+                if item.is_dir():
+                    Folder.deleteAllFolders(item)
+                else:
+                    item.unlink()
+            directory.rmdir()

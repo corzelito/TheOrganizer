@@ -39,7 +39,7 @@ class UI(QMainWindow):
 
         #Testing
         path = "C:\\Users\\Adri\\Desktop\\pruebas"
-        organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebasFicherosExtraidos"
+        organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
         Folder.makefolders(organizedFolderPath, subfolders)
         FileSorter.browseFiles(path, organizedFolderPath, subfolders)
