@@ -14,6 +14,4 @@ if __name__ == '__main__':
     app.setWindowIcon(QIcon(icon_name))
     GUI = ui.MainWindow.UI()
     GUI.show()
-
-    GUI.setFixedSize(GUI.size())
     sys.exit(app.exec())
