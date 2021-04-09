@@ -4,6 +4,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
 from Config.Config import changeValues, getConfigValue
+from ui.extensionsWindow import extensionsWindowUI
 
 
 class ConfigWindowUI(QMainWindow):
@@ -13,6 +14,7 @@ class ConfigWindowUI(QMainWindow):
         self.setWindowTitle("Configuracion")
         self.loadConfig()
         self.saveButton.clicked.connect(self.saveValue)
+        self.configButton.clicked.connect(self.openExtensionWindow)
 
     def loadConfig(self):
         self.txtFolder1.setPlainText(getConfigValue("Subfolders", "folder1"))
@@ -75,3 +77,8 @@ class ConfigWindowUI(QMainWindow):
         # TODO PERMITIR CAMBIAR EXTENSIONES
 
         print("Se han guardado los valores")
+
+    def openExtensionWindow(self):
+        print("he")
+        self.w = extensionsWindowUI()
+        self.w.show()
