@@ -1,9 +1,19 @@
-# print(getConfigValue("Subfolders", "folder2"))
+from Files.Extensions import Extensions
+
+list1 = ['.mp3', '.mp4', '.WOW']
+
+list2 = ['.jpg', '.png', '.mp4', '.mov', '.mp3', '.doc']
+
+# print(".jpg" in images)
+#
 
 
-# getSubfolders()
-from Config.Config import getExtensions, makeConfigFile
 
-makeConfigFile()
+# print( Extensions.images[1])
 
-print(getExtensions("extensions", "extensionsfolder3"))
+
+array = []
+for i in Extensions.images:
+    if i not in list1:
+        array.append(i)
+    print(array)
