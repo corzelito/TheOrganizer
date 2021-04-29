@@ -1,3 +1,6 @@
+from Config.Config import getConfigValue
+
+
 class Extensions:
     images = (
         ".jpg",
@@ -37,10 +40,24 @@ class Extensions:
         for i in extension:
             if i not in Extensions.getList2(self):
                 array.append(i)
-            print(i)
         self.listWidget.addItems(array)
+
+    def addItemsToList2(self):
+        array = []
+        extensions = getConfigValue("extensions", "extensionsfolder1").split(" , ")
+
+        for i in extensions:
+            array.append(i)
+
+        self.listWidget_2.addItems(array)
+
 
     def getRows(self):
         rows = sorted([index.row() for index in self.listWidget.selectedIndexes()],
+                reverse=True)
+        return rows
+
+    def getRowsList2(self):
+        rows = sorted([index.row() for index in self.listWidget_2.selectedIndexes()],
                 reverse=True)
         return rows

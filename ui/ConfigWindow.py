@@ -79,6 +79,5 @@ class ConfigWindowUI(QMainWindow):
         print("Se han guardado los valores")
 
     def openExtensionWindow(self):
-        print("he")
         self.w = extensionsWindowUI()
         self.w.show()

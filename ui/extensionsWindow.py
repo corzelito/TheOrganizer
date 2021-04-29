@@ -1,28 +1,31 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
+from Config.Config import changeValues
 from Files.Extensions import Extensions
 from Files.Extensions import *
-
-
-
-
 
 class extensionsWindowUI(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/extensionsWindow.ui", self)
         self.setWindowTitle("Extensiones")
+        self.loadConfig()
         types = ('', 'Imágenes', 'Vídeo', 'Música', 'Documentos', 'Otros')
 
         self.cmbExtensions.addItems(types)
         self.cmbExtensions.currentIndexChanged.connect(self.selectionchange)
         self.btntoRight.clicked.connect(self.moveToRight)
-        # self.btnTest.clicked.connect(self.getList2Data)
+        self.saveButton.clicked.connect(self.saveValue)
+        self.btnTest.clicked.connect(self.moveToLeft)
 
     def moveToRight(self):
         for row in Extensions.getRows(self):
             self.listWidget_2.addItem(self.listWidget.takeItem(row))
+
+    def moveToLeft(self):
+        for row in Extensions.getRowsList2(self):
+            self.listWidget.addItem(self.listWidget_2.takeItem(row))
 
     def selectionchange(self, comboIndex):
         if comboIndex == 0:
@@ -38,37 +41,18 @@ class extensionsWindowUI(QMainWindow):
         elif comboIndex == 5:
             Extensions.addItemsToList1(self, Extensions.all)
 
-
-    def get_left_elements(self):
-        r = []
-        for i in range(self.mInput.count()):
-            it = self.mInput.item(i)
-            r.append(it.text())
-        return r
-
-    def get_right_elements(self):
-        r = []
-        for i in range(self.mOuput.count()):
-            it = self.mOuput.item(i)
-            r.append(it.text())
-        return r
-    
-    def moveSelected_clicked(self):
-        for i in Extensions.getList(self):
-            if i in Extensions.getList2(self):
-                print("está", i)
-            else:
-                # print(row)
-                print("no esta", i)
-                self.listWidget_2.addItem(self.listWidget.takeItem(self.listWidget.currentRow()))
+    def loadConfig(self):
+        Extensions.addItemsToList2(self)
       
+    def saveValue(self):
+        array = ''
+        for i in Extensions.getList2(self):
+            array += i + " , "
+        array = array[:-2]
+
+        changeValues("extensions", "extensionsfolder1", array)
+        #TODO QUE FUNCIONE CON TODOS LOS BOTONES
 
     def moveAll_clicked(self):
         while self.listWidget.count() > 0:
             self.listWidget_2.addItem(self.listWidget.takeItem(0))
-    # def getListData2(self):
-    #     itemsInList2 = []
-    #     for index in range(self.listWidget_2.count()):
-    #         itemsInList2.append(self.listWidget_2.item(index).text())
-    #
-    #     return itemsInList2
