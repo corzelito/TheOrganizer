@@ -2,6 +2,9 @@ from Config.Config import getConfigValue
 
 
 class Extensions:
+    types = ('', 'Archivos', 'Audio', 'Código', 'Ejecutables', 'Fuentes', 'Hojas de cálculo', 'Imágenes', 'Libros',
+             'Presentaciones', 'Texto', 'Vídeo', 'Web', 'Todos')
+
     archives = (
         ".7z", ".a", ".apk", ".ar", ".bz2", ".cab", ".cpio", ".deb", ".dmg", ".egg", ".gz", ".iso", ".jar", ".lha",
         ".mar", ".pea", ".rar", ".rpm", ".s7z", ".shar", ".tar", ".tbz2", ".tgz", ".tlz", ".war",
@@ -81,9 +84,10 @@ class Extensions:
                 array.append(i)
         self.listWidget.addItems(array)
 
-    def addItemsToList2(self):
+    def addItemsToList2(self, buttonIndex):
+        extensionFolder = "extensionsfolder" + str(buttonIndex)
         array = []
-        extensions = getConfigValue("extensions", "extensionsfolder1").split(" , ")
+        extensions = getConfigValue("extensions", str(extensionFolder)).split(" , ")
 
         for i in extensions:
             if i != '':

@@ -13,7 +13,9 @@ def makeConfigFile():
 
         config['extensions'] = {'extensionsFolder1': ".png , .jpg , .jpeg",
                                 'extensionsFolder2': ".doc , .pdf , .docx",
-                                'extensionsFolder3': ".mp4 , .mov"}
+                                'extensionsFolder3': ".mp4 , .mov",
+                                'extensionsFolder4': ".css , .html"
+                                }
 
         config['Folder1'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
         config['Folder2'] = {'orderByYear': 'True', 'orderByMonth': 'True'}

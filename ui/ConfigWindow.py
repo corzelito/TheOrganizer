@@ -14,7 +14,10 @@ class ConfigWindowUI(QMainWindow):
         self.setWindowTitle("Configuracion")
         self.loadConfig()
         self.saveButton.clicked.connect(self.saveValue)
-        self.configButton.clicked.connect(self.openExtensionWindow)
+        self.configButton.clicked.connect(lambda: self.openExtensionWindow(1))
+        self.configButton_2.clicked.connect(lambda: self.openExtensionWindow(2))
+        self.configButton_3.clicked.connect(lambda: self.openExtensionWindow(3))
+        self.configButton_4.clicked.connect(lambda: self.openExtensionWindow(4))
 
     def loadConfig(self):
         self.txtFolder1.setPlainText(getConfigValue("Subfolders", "folder1"))
@@ -78,6 +81,7 @@ class ConfigWindowUI(QMainWindow):
 
         print("Se han guardado los valores")
 
-    def openExtensionWindow(self):
-        self.w = extensionsWindowUI()
+    def openExtensionWindow(self, buttonIndex):
+        self.message = buttonIndex
+        self.w = extensionsWindowUI(self.message)
         self.w.show()
