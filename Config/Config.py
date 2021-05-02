@@ -5,7 +5,7 @@ from pathlib import Path
 def makeConfigFile():
     configRoot = Path('settings.ini')
 
-    #If configFile doesn't exist, create it.
+    # If configFile doesn't exist, create it.
     if not configRoot.is_file():
         config = configparser.ConfigParser()
 

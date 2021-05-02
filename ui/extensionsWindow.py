@@ -22,7 +22,6 @@ class extensionsWindowUI(QMainWindow):
         self.btntoAllLeft.clicked.connect(self.moveAllToLeft)
         self.saveButton.clicked.connect(self.saveValue)
 
-
     def moveToRight(self):
         for row in Extensions.getRows(self):
             self.listWidget_2.addItem(self.listWidget.takeItem(row))
@@ -38,7 +37,6 @@ class extensionsWindowUI(QMainWindow):
             Extensions.addItemsToList1(self, sorted(Extensions.extensions[comboIndex - 1]))
 
     def loadConfig(self):
-        # TODO ARREGLAR SE TRAE VACIOS
         Extensions.addItemsToList2(self)
 
     def saveValue(self):
@@ -57,4 +55,3 @@ class extensionsWindowUI(QMainWindow):
     def moveAllToLeft(self):
         while self.listWidget_2.count() > 0:
             self.listWidget.addItem(self.listWidget_2.takeItem(0))
-

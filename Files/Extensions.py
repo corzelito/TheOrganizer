@@ -77,7 +77,7 @@ class Extensions:
         self.listWidget.clear()
         array = []
         for i in extension:
-            if i not in Extensions.getList2(self):
+            if i not in Extensions.getList2(self) and i != '':
                 array.append(i)
         self.listWidget.addItems(array)
 
@@ -86,7 +86,8 @@ class Extensions:
         extensions = getConfigValue("extensions", "extensionsfolder1").split(" , ")
 
         for i in extensions:
-            array.append(i)
+            if i != '':
+                array.append(i)
 
         self.listWidget_2.addItems(array)
 
