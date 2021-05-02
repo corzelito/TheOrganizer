@@ -17,8 +17,11 @@ class extensionsWindowUI(QMainWindow):
         self.cmbExtensions.addItems(types)
         self.cmbExtensions.currentIndexChanged.connect(self.selectionchange)
         self.btntoRight.clicked.connect(self.moveToRight)
+        self.btntoLeft.clicked.connect(self.moveToLeft)
+        self.btntoAllRight.clicked.connect(self.moveAllToRight)
+        self.btntoAllLeft.clicked.connect(self.moveAllToLeft)
         self.saveButton.clicked.connect(self.saveValue)
-        self.btnTest.clicked.connect(self.moveToLeft)
+
 
     def moveToRight(self):
         for row in Extensions.getRows(self):
@@ -35,6 +38,7 @@ class extensionsWindowUI(QMainWindow):
             Extensions.addItemsToList1(self, sorted(Extensions.extensions[comboIndex - 1]))
 
     def loadConfig(self):
+        # TODO ARREGLAR SE TRAE VACIOS
         Extensions.addItemsToList2(self)
 
     def saveValue(self):
@@ -46,6 +50,11 @@ class extensionsWindowUI(QMainWindow):
         changeValues("extensions", "extensionsfolder1", array)
         # TODO QUE FUNCIONE CON TODOS LOS BOTONES
 
-    def moveAll_clicked(self):
+    def moveAllToRight(self):
         while self.listWidget.count() > 0:
             self.listWidget_2.addItem(self.listWidget.takeItem(0))
+
+    def moveAllToLeft(self):
+        while self.listWidget_2.count() > 0:
+            self.listWidget.addItem(self.listWidget_2.takeItem(0))
+
