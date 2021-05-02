@@ -35,9 +35,9 @@ class extensionsWindowUI(QMainWindow):
         elif comboIndex == 2:
             Extensions.addItemsToList1(self, Extensions.video)
         elif comboIndex == 3:
-            Extensions.addItemsToList1(self, Extensions.music)
+            Extensions.addItemsToList1(self, Extensions.audio)
         elif comboIndex == 4:
-            Extensions.addItemsToList1(self, Extensions.document)
+            Extensions.addItemsToList1(self, Extensions.text)
         elif comboIndex == 5:
             Extensions.addItemsToList1(self, Extensions.all)
 
