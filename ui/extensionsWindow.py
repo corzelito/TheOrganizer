@@ -45,11 +45,12 @@ class extensionsWindowUI(QMainWindow):
         array = array[:-2]
 
         changeValues("extensions", str(extensionFolder), array)
-        # NO PERMITIR AÑADIR MISMA EXTENSION EN DOS LISTAS
+
 
     def moveAllToRight(self):
         while self.listWidget.count() > 0:
             self.listWidget_2.addItem(self.listWidget.takeItem(0))
+        # TODO Refrescar lista al enviar la izquierda
 
     def moveAllToLeft(self):
         while self.listWidget_2.count() > 0:
