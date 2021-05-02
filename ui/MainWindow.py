@@ -4,7 +4,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 
-from Config.Config import getSubfolders
+from Config.Config import getSubfolders, makeConfigFile
 from Files.FileSorter import FileSorter
 from Files.Folder import Folder
 from ui.ConfigWindow import ConfigWindowUI
@@ -15,7 +15,7 @@ class UI(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/mainWindow.ui", self)
-
+        makeConfigFile()
         self.choosePathEntryButton.clicked.connect(self.getPathEntry)
         self.choosePathOrganizedButton.clicked.connect(self.getPathEntryOrganized)
         self.organizeButton.clicked.connect(self.organize)

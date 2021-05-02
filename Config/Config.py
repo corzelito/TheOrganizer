@@ -1,22 +1,27 @@
 import configparser
+from pathlib import Path
 
 
 def makeConfigFile():
-    config = configparser.ConfigParser()
+    configRoot = Path('settings.ini')
 
-    config['Subfolders'] = {'folder1': 'Imagenes', 'folder2': 'Videos', 'folder3': 'Documentos', 'folder4': 'Otros'}
+    #If configFile doesn't exist, create it.
+    if not configRoot.is_file():
+        config = configparser.ConfigParser()
 
-    config['extensions'] = {'extensionsFolder1': ".png , .jpg , .jpeg",
-                            'extensionsFolder2': ".doc , .pdf , .docx",
-                            'extensionsFolder3': ".mp4 , .mov"}
+        config['Subfolders'] = {'folder1': 'Imagenes', 'folder2': 'Videos', 'folder3': 'Documentos', 'folder4': 'Otros'}
 
-    config['Folder1'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
-    config['Folder2'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
-    config['Folder3'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
-    config['Folder4'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+        config['extensions'] = {'extensionsFolder1': ".png , .jpg , .jpeg",
+                                'extensionsFolder2': ".doc , .pdf , .docx",
+                                'extensionsFolder3': ".mp4 , .mov"}
 
-    with open('settings.ini', 'w') as configfile:
-        config.write(configfile)
+        config['Folder1'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+        config['Folder2'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+        config['Folder3'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+        config['Folder4'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
+
+        with open('settings.ini', 'w') as configfile:
+            config.write(configfile)
 
 
 def changeValues(section, row, value):
