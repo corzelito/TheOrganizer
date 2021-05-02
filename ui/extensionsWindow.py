@@ -2,8 +2,8 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
 from Config.Config import changeValues
-from Files.Extensions import Extensions
 from Files.Extensions import *
+
 
 class extensionsWindowUI(QMainWindow):
     def __init__(self):
@@ -11,7 +11,8 @@ class extensionsWindowUI(QMainWindow):
         uic.loadUi("ui/extensionsWindow.ui", self)
         self.setWindowTitle("Extensiones")
         self.loadConfig()
-        types = ('', 'Imágenes', 'Vídeo', 'Música', 'Documentos', 'Otros')
+        types = ('', 'Archivos', 'Audio', 'Código', 'Ejecutables', 'Fuentes', 'Hojas de cálculo', 'Imágenes', 'Libros',
+                 'Presentaciones', 'Texto', 'Vídeo', 'Web', 'Todos')
 
         self.cmbExtensions.addItems(types)
         self.cmbExtensions.currentIndexChanged.connect(self.selectionchange)
@@ -30,20 +31,12 @@ class extensionsWindowUI(QMainWindow):
     def selectionchange(self, comboIndex):
         if comboIndex == 0:
             self.listWidget.clear()
-        elif comboIndex == 1:
-            Extensions.addItemsToList1(self, Extensions.images)
-        elif comboIndex == 2:
-            Extensions.addItemsToList1(self, Extensions.video)
-        elif comboIndex == 3:
-            Extensions.addItemsToList1(self, Extensions.audio)
-        elif comboIndex == 4:
-            Extensions.addItemsToList1(self, Extensions.text)
-        elif comboIndex == 5:
-            Extensions.addItemsToList1(self, Extensions.all)
+        else:
+            Extensions.addItemsToList1(self, sorted(Extensions.extensions[comboIndex - 1]))
 
     def loadConfig(self):
         Extensions.addItemsToList2(self)
-      
+
     def saveValue(self):
         array = ''
         for i in Extensions.getList2(self):
@@ -51,7 +44,7 @@ class extensionsWindowUI(QMainWindow):
         array = array[:-2]
 
         changeValues("extensions", "extensionsfolder1", array)
-        #TODO QUE FUNCIONE CON TODOS LOS BOTONES
+        # TODO QUE FUNCIONE CON TODOS LOS BOTONES
 
     def moveAll_clicked(self):
         while self.listWidget.count() > 0:

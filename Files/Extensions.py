@@ -58,7 +58,8 @@ class Extensions:
         ".html", ".htm", ".css", ".js", ".jsx", ".less", ".scss", ".wasm", ".php"
     )
 
-    all = images + video + audio + text
+    allExtensions = (archives + audio + code + exec + font + sheet + images + book + slide + text + video + web)
+    extensions = (archives, audio, code, exec, font, sheet, images, book, slide, text, video, web, allExtensions)
 
     def getList(self):
         itemsInList = []
