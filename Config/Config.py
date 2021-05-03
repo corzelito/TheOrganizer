@@ -41,12 +41,14 @@ def getConfigValue(section, row):
 
     return str(value)
 
+
 def getConfigSectionValues(section):
     config = configparser.ConfigParser()
     config.read('settings.ini')
 
     value = config.items(section)
     return (str(value))
+
 
 def getSubfolders():
     subFolders = []

@@ -1,4 +1,4 @@
-from Config.Config import getConfigValue, getConfigSectionValues
+from Config.Config import getConfigValue
 
 
 class Extensions:
@@ -76,11 +76,19 @@ class Extensions:
             itemsInList2.append(self.listWidget_2.item(index).text())
         return itemsInList2
 
+    # def addItemsToList1(self, extension):
+    #     self.listWidget.clear()
+    #     array = []
+    #     for i in extension:
+    #         if i not in Extensions.getList(self) and i != '' and i not in getConfigSectionValues("extensions"):
+    #             array.append(i)
+    #     self.listWidget.addItems(array)
+
     def addItemsToList1(self, extension):
         self.listWidget.clear()
         array = []
         for i in extension:
-            if i not in Extensions.getList2(self) and i != '' and i not in getConfigSectionValues("extensions"):
+            if i not in Extensions.getList2(self) and i != '':
                 array.append(i)
         self.listWidget.addItems(array)
 

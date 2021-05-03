@@ -77,8 +77,6 @@ class ConfigWindowUI(QMainWindow):
         changeValues("Folder4", "orderbyyear", chkorganizeByYearValueFolder4)
         changeValues("Folder4", "orderbymonth", chkorganizeByMonthValueFolder4)
 
-        # TODO PERMITIR CAMBIAR EXTENSIONES
-
         print("Se han guardado los valores")
 
     def openExtensionWindow(self, buttonIndex):
