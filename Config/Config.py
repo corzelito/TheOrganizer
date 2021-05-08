@@ -50,6 +50,12 @@ def getConfigSectionValues(section):
     value = config.items(section)
     return (str(value))
 
+def getNumberOfConfigsSection(section):
+    config = configparser.ConfigParser()
+    config.read('settings.ini')
+    list = config.items(section)
+    value = int(len(list))
+    return (value)
 
 def getSubfolders():
     subFolders = []

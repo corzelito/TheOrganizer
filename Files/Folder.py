@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
-
+from Config.Config import getSubfolders
 
 class Folder:
-    def makefolders(path, subfolders):
+    def makefolders(path):
         os.makedirs(path, exist_ok=True)
+        subfolders = getSubfolders()
         for i in subfolders:
             os.makedirs(path + "/" + i, exist_ok=True)
 

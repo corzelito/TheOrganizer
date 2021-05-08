@@ -51,8 +51,8 @@ class UI(QMainWindow):
         else:
             question = 6
 
-        Folder.makefolders(organizedFolderPath, subfolders)
-        FileSorter.browseFiles(path, organizedFolderPath, subfolders, question)
+        Folder.makefolders(organizedFolderPath)
+        FileSorter.browseFiles(path, organizedFolderPath, question)
 
         if question == 6:
             ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
