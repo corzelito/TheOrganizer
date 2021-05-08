@@ -4,7 +4,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 
-from Config.Config import getSubfolders, makeConfigFile
+from Config.Config import getSubfolders, makeConfigFile, getConfigValue
 from Files.FileSorter import FileSorter
 from Files.Folder import Folder
 from ui.ConfigWindow import ConfigWindowUI
@@ -20,6 +20,8 @@ class UI(QMainWindow):
         self.choosePathOrganizedButton.clicked.connect(self.getPathEntryOrganized)
         self.organizeButton.clicked.connect(self.organize)
         self.configButton.clicked.connect(self.ConfigWindow)
+        self.progressBar.setValue(0)
+        self.progressBar.hide()
 
     def getPathEntry(self):
         dialog = QFileDialog()
@@ -42,10 +44,29 @@ class UI(QMainWindow):
             path = "C:\\Users\\Adri\\Desktop\\pruebas"
             organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
-        Folder.makefolders(organizedFolderPath, subfolders)
-        FileSorter.browseFiles(path, organizedFolderPath, subfolders)
+        # status = 0
+        # self.progressBar.show()
+        # self.progressBar.setValue(status)
 
-        ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
+        # YES = 6 // NO = 7
+        # print(getConfigValue("ReplaceFiles", "ReplaceFiles"))
+        if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
+            question = ctypes.windll.user32.MessageBoxW(0, "La opción 'No remplazar' está desactivada, en caso de tener archivos iguales en la carpeta de destino, se sobrescribiran, ¿Quieres continuar?", "Aviso", 4)
+        else:
+            question = 6
+
+        # Folder.getNumberOfFiles(path)
+
+        Folder.makefolders(organizedFolderPath, subfolders)
+        FileSorter.browseFiles(path, organizedFolderPath, subfolders, question)
+
+        # while status != 100:
+        #     status += 1
+        #     self.progressBar.setValue(status)
+        if question == 6:
+            ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
+
+
 
     def ConfigWindow(self):
         self.w = ConfigWindowUI()
