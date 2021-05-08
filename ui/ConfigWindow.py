@@ -20,6 +20,7 @@ class ConfigWindowUI(QMainWindow):
         self.configButton_3.clicked.connect(lambda: self.openExtensionWindow(3))
         self.configButton_4.clicked.connect(lambda: self.openExtensionWindow(4))
 
+
     def loadConfig(self):
         self.txtFolder1.setPlainText(getConfigValue("Subfolders", "folder1"))
         self.txtFolder2.setPlainText(getConfigValue("Subfolders", "folder2"))
@@ -41,6 +42,9 @@ class ConfigWindowUI(QMainWindow):
         # Folder4
         self.chkorganizeByYearFolder4.setChecked(ast.literal_eval(getConfigValue("Folder4", "orderbyyear")))
         self.chkorganizeByMonthFolder4.setChecked(ast.literal_eval(getConfigValue("Folder4", "orderbymonth")))
+
+        #Check Replace
+        self.chkReplace.setChecked(ast.literal_eval(getConfigValue("ReplaceFiles", "ReplaceFiles")))
 
     def saveValue(self):
         txtFolder1 = self.txtFolder1.toPlainText()
@@ -77,6 +81,10 @@ class ConfigWindowUI(QMainWindow):
         chkorganizeByMonthValueFolder4 = str(self.chkorganizeByMonthFolder4.isChecked())
         changeValues("Folder4", "orderbyyear", chkorganizeByYearValueFolder4)
         changeValues("Folder4", "orderbymonth", chkorganizeByMonthValueFolder4)
+
+        #Replace Files if exists
+        chkReplace = str(self.chkReplace.isChecked())
+        changeValues("ReplaceFiles", "ReplaceFiles", chkReplace)
 
         ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)
 
