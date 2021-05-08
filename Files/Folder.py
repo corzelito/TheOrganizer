@@ -17,3 +17,10 @@ class Folder:
                 else:
                     item.unlink()
             directory.rmdir()
+
+    def getNumberOfFiles(root):
+        count = 0
+        for path in os.listdir(root):
+            if os.path.isfile(os.path.join(root, path)):
+                count += 1
+        return count

@@ -1,3 +1,5 @@
+import ctypes
+
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
@@ -57,3 +59,5 @@ class extensionsWindowUI(QMainWindow):
         extensionConfig = extensionConfig[:-2]
 
         changeValues("extensions", str(extensionFolder), extensionConfig)
+
+        ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)

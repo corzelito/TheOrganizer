@@ -1,4 +1,5 @@
 import ast
+import ctypes
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
@@ -11,7 +12,7 @@ class ConfigWindowUI(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/configWindow.ui", self)
-        self.setWindowTitle("Configuracion")
+        self.setWindowTitle("Configuración")
         self.loadConfig()
         self.saveButton.clicked.connect(self.saveValue)
         self.configButton.clicked.connect(lambda: self.openExtensionWindow(1))
@@ -77,7 +78,7 @@ class ConfigWindowUI(QMainWindow):
         changeValues("Folder4", "orderbyyear", chkorganizeByYearValueFolder4)
         changeValues("Folder4", "orderbymonth", chkorganizeByMonthValueFolder4)
 
-        print("Se han guardado los valores")
+        ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)
 
     def openExtensionWindow(self, buttonIndex):
         self.message = buttonIndex

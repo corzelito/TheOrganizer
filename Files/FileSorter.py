@@ -2,11 +2,12 @@ import calendar
 import datetime
 import os
 from pathlib import Path
-
+import shutil
 from Config.Config import getConfigValue, getExtensions
 
 
 class FileSorter:
+    #TODO PETA CON MISMOS ARCHIVOS
     def browseFiles(path, organizedFolderPath, subfolders):
         directory = Path(path)
         for item in directory.iterdir():
@@ -37,7 +38,7 @@ class FileSorter:
         elif extension in videos:
             Path(item).rename(organizedFolderPath + "/" + subfolders[1] + "/" + item.name)
         elif extension in documents:
-            Path(item).rename(organizedFolderPath + "/" + subfolders[2] + "/" + item.name)
+                Path(item).rename(organizedFolderPath + "/" + subfolders[2] + "/" + item.name)
         else:
             Path(item).rename(organizedFolderPath + "/" + subfolders[3] + "/" + item.name)
 
@@ -49,10 +50,16 @@ class FileSorter:
         monthFolder = yearFolder + "/" + creationMonthName
 
         copyFilePath = monthFolder + "/" + item.name
-
         os.makedirs(yearFolder, exist_ok=True)
         os.makedirs(monthFolder, exist_ok=True)
-        Path(item).rename(copyFilePath)
+
+        try:
+            Path(item).rename(copyFilePath)
+        except OSError:
+            #TODO HACER QUE OPCION PARA REEMPLAZAR Y AVISAR
+            # Remplazar si existe
+            shutil.move(item, copyFilePath)
+            print("remplazado")
 
     def organizeByYear(organizedFolderPath, item, imgSubFolder):
         year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
