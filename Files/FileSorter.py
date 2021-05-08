@@ -17,34 +17,31 @@ class FileSorter:
                 FileSorter.organizeFileByExtension(item, organizedFolderPath, question)
 
     def organizeFileByExtension(item, organizedFolderPath, question):
-        subfolders = getSubfolders()
         extension = str(os.path.splitext(item)[1]).lower()
 
         NumberOfConfigsSection = (getNumberOfConfigsSection("extensions"))
         extensionsFolders = []
-        chkOrganizeByYear = []
-        chkOrganizeByMonth = []
 
         for i in range(1, NumberOfConfigsSection + 1):
             extensionFolder = "extensionsfolder" + str(i)
-            folder = "Folder" + str(i)
             extensionsFolders.append(extensionFolder)
-            chkOrganizeByYear.append(folder)
-            chkOrganizeByMonth.append(folder)
 
         for i in range(0, NumberOfConfigsSection):
-            organizeByYear = getConfigValue(chkOrganizeByYear[i], "orderbyyear")
-            organizeByMonth = getConfigValue(chkOrganizeByYear[i], "orderbymonth")
-
             if extension in getExtensions("extensions", str(extensionsFolders[i])):
-                FileSorter.organizeFiles(organizedFolderPath, item, subfolders[i], question,
-                                         organizeByYear, organizeByMonth)
+                FileSorter.organizeFiles(organizedFolderPath, item, i, question)
         try:
             Path(item).rename(organizedFolderPath + "/" + "Otros" + "/" + item.name)
         except OSError:
             pass
 
-    def organizeFiles(organizedFolderPath, item, subfolder, question, organizeByYear, organizeByMonth):
+    def organizeFiles(organizedFolderPath, item, index, question):
+
+        subfolders = getSubfolders()
+        subfolder = subfolders[index]
+        folder = "Folder" + str(index + 1)
+
+        organizeByYear = getConfigValue(folder, "orderbyyear")
+        organizeByMonth = getConfigValue(folder, "orderbymonth")
 
         year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
         yearFolder = organizedFolderPath + "/" + subfolder + "/" + str(year)
@@ -74,5 +71,4 @@ class FileSorter:
         except OSError:
             if question == 6:
                 shutil.move(item, copyFilePath)
-            else:
-                print("no remplazado")
+
