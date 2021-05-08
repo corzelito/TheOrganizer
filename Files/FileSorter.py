@@ -37,63 +37,37 @@ class FileSorter:
             organizeByMonth = getConfigValue(chkOrganizeByYear[i], "orderbymonth")
 
             if extension in getExtensions("extensions", str(extensionsFolders[i])):
-
-                if organizeByYear == "True" and organizeByMonth == "True":
-                    FileSorter.organizeByYearAndMonth(organizedFolderPath, item, subfolders[i], question)
-                elif organizeByYear == "True" and organizeByMonth == "False":
-                    FileSorter.organizeByYear(organizedFolderPath, item, subfolders[i], question)
-                elif organizeByYear == "False" and organizeByMonth == "True":
-                    FileSorter.organizeByMonth(organizedFolderPath, item, subfolders[i], question)
-                else:
-                    Path(item).rename(organizedFolderPath + "/" + subfolders[i] + "/" + item.name)
-
+                FileSorter.organizeFiles(organizedFolderPath, item, subfolders[i], question,
+                                         organizeByYear, organizeByMonth)
         try:
             Path(item).rename(organizedFolderPath + "/" + "Otros" + "/" + item.name)
         except OSError:
             pass
 
-    def organizeByYearAndMonth(organizedFolderPath, item, imgSubFolder, question):
-        year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
-        yearFolder = organizedFolderPath + "/" + imgSubFolder + "/" + str(year)
+    def organizeFiles(organizedFolderPath, item, subfolder, question, organizeByYear, organizeByMonth):
 
+        year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
+        yearFolder = organizedFolderPath + "/" + subfolder + "/" + str(year)
         creationMonthName = calendar.month_name[datetime.date.fromtimestamp(os.path.getmtime(item)).month].capitalize()
         monthFolder = yearFolder + "/" + creationMonthName
 
-        copyFilePath = monthFolder + "/" + item.name
-        os.makedirs(yearFolder, exist_ok=True)
-        os.makedirs(monthFolder, exist_ok=True)
-
-        try:
-            Path(item).rename(copyFilePath)
-        except OSError:
-            if question == 6:
-                shutil.move(item, copyFilePath)
-            else:
-                print("no remplazado")
-
-    def organizeByYear(organizedFolderPath, item, imgSubFolder, question):
-        year = datetime.date.fromtimestamp(os.path.getmtime(item)).year
-        yearFolder = organizedFolderPath + "/" + imgSubFolder + "/" + str(year)
-
-        copyFilePath = yearFolder + "/" + item.name
-
-        os.makedirs(yearFolder, exist_ok=True)
-
-        try:
-            Path(item).rename(copyFilePath)
-        except OSError:
-            if question == 6:
-                shutil.move(item, copyFilePath)
-            else:
-                print("no remplazado")
-
-    def organizeByMonth(organizedFolderPath, item, imgSubFolder, question):
-        creationMonthName = calendar.month_name[datetime.date.fromtimestamp(os.path.getmtime(item)).month].capitalize()
-        monthFolder = organizedFolderPath + "/" + imgSubFolder + "/" + creationMonthName
-
-        copyFilePath = monthFolder + "/" + item.name
-
-        os.makedirs(monthFolder, exist_ok=True)
+        # Organize by year and month
+        if organizeByYear == "True" and organizeByMonth == "True":
+            copyFilePath = monthFolder + "/" + item.name
+            os.makedirs(yearFolder, exist_ok=True)
+            os.makedirs(monthFolder, exist_ok=True)
+        # Organize by year
+        elif organizeByYear == "True" and organizeByMonth == "False":
+            copyFilePath = yearFolder + "/" + item.name
+            os.makedirs(yearFolder, exist_ok=True)
+        # Organize by month
+        elif organizeByYear == "False" and organizeByMonth == "True":
+            monthFolder = organizedFolderPath + "/" + subfolder + "/" + creationMonthName
+            copyFilePath = monthFolder + "/" + item.name
+            os.makedirs(monthFolder, exist_ok=True)
+        # Organize without filters
+        else:
+            copyFilePath = organizedFolderPath + "/" + subfolder + "/" + item.name
 
         try:
             Path(item).rename(copyFilePath)
