@@ -44,10 +44,6 @@ class UI(QMainWindow):
             path = "C:\\Users\\Adri\\Desktop\\pruebas"
             organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
-        # status = 0
-        # self.progressBar.show()
-        # self.progressBar.setValue(status)
-
         # YES = 6 // NO = 7
         # print(getConfigValue("ReplaceFiles", "ReplaceFiles"))
         if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
@@ -55,14 +51,9 @@ class UI(QMainWindow):
         else:
             question = 6
 
-        # Folder.getNumberOfFiles(path)
-
         Folder.makefolders(organizedFolderPath, subfolders)
         FileSorter.browseFiles(path, organizedFolderPath, subfolders, question)
 
-        # while status != 100:
-        #     status += 1
-        #     self.progressBar.setValue(status)
         if question == 6:
             ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
 
