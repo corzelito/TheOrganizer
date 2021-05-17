@@ -1306,7 +1306,7 @@
      <item>
       <widget class="QLabel" name="labelOrganizedFolderPath">
        <property name="text">
-        <string>Carpeta donde se organizará</string>
+        <string>Carpeta donde se organizará:</string>
        </property>
       </widget>
      </item>

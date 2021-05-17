@@ -22,6 +22,7 @@ def makeConfigFile():
         config['Folder3'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
         config['Folder4'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
         config['ReplaceFiles'] = {'ReplaceFiles': 'True'}
+        config['OrganizeOther'] = {'OrganizeOther': 'True'}
 
         with open('settings.ini', 'w') as configfile:
             config.write(configfile)

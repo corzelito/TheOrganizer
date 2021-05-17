@@ -45,7 +45,6 @@ class UI(QMainWindow):
             organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
 
         # YES = 6 // NO = 7
-        # print(getConfigValue("ReplaceFiles", "ReplaceFiles"))
         if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
             question = ctypes.windll.user32.MessageBoxW(0, "La opción 'No remplazar' está desactivada, en caso de tener archivos iguales en la carpeta de destino, se sobrescribiran, ¿Quieres continuar?", "Aviso", 4)
         else:

@@ -30,9 +30,13 @@ class FileSorter:
             if extension in getExtensions("extensions", str(extensionsFolders[i])):
                 FileSorter.organizeFiles(organizedFolderPath, item, i, question)
         try:
-            Path(item).rename(organizedFolderPath + "/" + "Otros" + "/" + item.name)
+            chkOrderOthers = getConfigValue("OrganizeOther", "OrganizeOther")
+            if chkOrderOthers == "True":
+                otherFolder = "Others"
+                os.makedirs(organizedFolderPath + "/" + otherFolder + "/", exist_ok=True)
+                Path(item).rename(organizedFolderPath + "/" + otherFolder + "/" + item.name)
         except OSError:
-            pass
+            print("ERROR - FAILED TO ORGANIZE FILES")
 
     def organizeFiles(organizedFolderPath, item, index, question):
 

@@ -3331,18 +3331,31 @@
       <normaloff>icons/16x16/cil-save.png</normaloff>icons/16x16/cil-save.png</iconset>
     </property>
    </widget>
-   <widget class="QCheckBox" name="chkReplace">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>150</y>
-      <width>171</width>
-      <height>17</height>
+      <width>461</width>
+      <height>21</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Reemplazar archivos si existen</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QCheckBox" name="chkReplace">
+       <property name="text">
+        <string>Reemplazar archivos si existen</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkOrderOthers">
+       <property name="text">
+        <string>Ordenar no incluidos en la lista en carpeta 'Otros'</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

@@ -46,6 +46,9 @@ class ConfigWindowUI(QMainWindow):
         #Check Replace
         self.chkReplace.setChecked(ast.literal_eval(getConfigValue("ReplaceFiles", "ReplaceFiles")))
 
+        #Check Order Others
+        self.chkOrderOthers.setChecked(ast.literal_eval(getConfigValue("OrganizeOther", "OrganizeOther")))
+
     def saveValue(self):
         txtFolder1 = self.txtFolder1.toPlainText()
         txtFolder2 = self.txtFolder2.toPlainText()
@@ -85,6 +88,11 @@ class ConfigWindowUI(QMainWindow):
         #Replace Files if exists
         chkReplace = str(self.chkReplace.isChecked())
         changeValues("ReplaceFiles", "ReplaceFiles", chkReplace)
+
+        #Organize others too
+        chkOrganizeOther = str(self.chkOrderOthers.isChecked())
+        changeValues("OrganizeOther", "OrganizeOther", chkOrganizeOther)
+
 
         ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)
 
