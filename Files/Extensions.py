@@ -1,9 +1,13 @@
 from Config.Config import getConfigValue
+from Files.Languages import *
+import gettext
+import locale
 
 
 class Extensions:
-    types = ('', 'Archivos', 'Audio', 'Código', 'Ejecutables', 'Fuentes', 'Hojas de cálculo', 'Imágenes', 'Libros',
-             'Presentaciones', 'Texto', 'Vídeo', 'Web', 'Todos')
+
+    types = (' ', 'Archives', 'Audio', 'Code', 'Executables', 'Fonts', 'Spreadsheets', 'Images', 'Books',
+             'Presentations', 'Text', 'Video', 'Web', 'All')
 
     archives = (
         ".7z", ".a", ".apk", ".ar", ".bz2", ".cab", ".cpio", ".deb", ".dmg", ".egg", ".gz", ".iso", ".jar", ".lha",
@@ -75,14 +79,6 @@ class Extensions:
         for index in range(self.listWidget_2.count()):
             itemsInList2.append(self.listWidget_2.item(index).text())
         return itemsInList2
-
-    # def addItemsToList1(self, extension):
-    #     self.listWidget.clear()
-    #     array = []
-    #     for i in extension:
-    #         if i not in Extensions.getList(self) and i != '' and i not in getConfigSectionValues("extensions"):
-    #             array.append(i)
-    #     self.listWidget.addItems(array)
 
     def addItemsToList1(self, extension):
         self.listWidget.clear()

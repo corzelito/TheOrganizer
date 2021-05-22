@@ -5,10 +5,16 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
 
 import ui
+import gettext
 from ui.MainWindow import UI
+from Files.Languages import *
+from Config import *
 
 if __name__ == '__main__':
-    locale.setlocale(locale.LC_ALL, 'ES')
+
+    Config.makeConfigFile()
+    Languages.setLanguage()
+
     app = QApplication(sys.argv)
     icon_name = 'ui/app_icon.png'
     app.setWindowIcon(QIcon(icon_name))

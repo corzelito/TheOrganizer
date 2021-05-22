@@ -11,15 +11,17 @@ class extensionsWindowUI(QMainWindow):
     def __init__(self, buttonIndex):
         super().__init__()
         uic.loadUi("ui/extensionsWindow.ui", self)
-        self.setWindowTitle("Extensiones")
+        windowName = _("Extensions")
+        self.setWindowTitle(windowName)
         self.loadConfig(buttonIndex)
-        self.cmbExtensions.addItems(Extensions.types)
+
         self.cmbExtensions.currentIndexChanged.connect(self.selectionchange)
         self.btntoRight.clicked.connect(self.moveToRight)
         self.btntoLeft.clicked.connect(self.moveToLeft)
         self.btntoAllRight.clicked.connect(self.moveAllToRight)
         self.btntoAllLeft.clicked.connect(lambda: self.moveAllToLeft(self.cmbExtensions.currentIndex()))
         self.saveButton.clicked.connect(lambda: self.saveValue(buttonIndex))
+        self.translateStrings()
 
     def loadConfig(self, buttonIndex):
         Extensions.addItemsToList2(self, buttonIndex)
@@ -60,4 +62,9 @@ class extensionsWindowUI(QMainWindow):
 
         changeValues("extensions", str(extensionFolder), extensionConfig)
 
-        ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)
+        ctypes.windll.user32.MessageBoxW(0, "All your settings have been saved correctly", "Save completed", 0)
+
+    def translateStrings(self):
+         self.saveButton.setText(_(" Save"))
+         for i in Extensions.types:
+            self.cmbExtensions.addItem(_(i))

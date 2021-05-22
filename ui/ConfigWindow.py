@@ -6,20 +6,23 @@ from PyQt5.QtWidgets import QMainWindow
 
 from Config.Config import changeValues, getConfigValue
 from ui.extensionsWindow import extensionsWindowUI
-
+from Files.Languages import *
 
 class ConfigWindowUI(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/configWindow.ui", self)
-        self.setWindowTitle("Configuración")
+        windowName = _("Settings")
+        self.setWindowTitle(windowName)
+        self.cmbLanguages.addItems(Languages.idioms)
         self.loadConfig()
         self.saveButton.clicked.connect(self.saveValue)
         self.configButton.clicked.connect(lambda: self.openExtensionWindow(1))
         self.configButton_2.clicked.connect(lambda: self.openExtensionWindow(2))
         self.configButton_3.clicked.connect(lambda: self.openExtensionWindow(3))
         self.configButton_4.clicked.connect(lambda: self.openExtensionWindow(4))
-
+        self.cmbLanguages.currentIndexChanged.connect(self.changeLanguage)
+        self.translateStrings()
 
     def loadConfig(self):
         self.txtFolder1.setPlainText(getConfigValue("Subfolders", "folder1"))
@@ -48,6 +51,12 @@ class ConfigWindowUI(QMainWindow):
 
         #Check Order Others
         self.chkOrderOthers.setChecked(ast.literal_eval(getConfigValue("OrganizeOther", "OrganizeOther")))
+
+        #Combo Language
+        languageSelected = getConfigValue("Languages", "language")
+        indexLanguage = Languages.idioms.index(str(languageSelected))
+        self.cmbLanguages.setCurrentIndex(indexLanguage)
+
 
     def saveValue(self):
         txtFolder1 = self.txtFolder1.toPlainText()
@@ -93,10 +102,40 @@ class ConfigWindowUI(QMainWindow):
         chkOrganizeOther = str(self.chkOrderOthers.isChecked())
         changeValues("OrganizeOther", "OrganizeOther", chkOrganizeOther)
 
+        # Language
+        cmbLanguage = str(self.cmbLanguages.currentText())
+        changeValues("Languages", "language", cmbLanguage)
 
-        ctypes.windll.user32.MessageBoxW(0, "Se han guardado todos tus ajustes correctamente", "Guardado completado", 0)
+        ctypes.windll.user32.MessageBoxW(0, _("All your settings have been saved correctly."), _("Save completed"), 0)
+
+    def changeLanguage(self):
+        ctypes.windll.user32.MessageBoxW(0, _("Save the options and restart the application to apply the changes."), _("Restart required"), 0)
+
+    def translateStrings(self):
+         self.labelFolder1.setText(_("Folder1"))
+         self.labelFolder2.setText(_("Folder2"))
+         self.labelFolder3.setText(_("Folder3"))
+         self.labelFolder4.setText(_("Folder4"))
+
+         self.chkorganizeByYearFolder1.setText(_("Organize by years"))
+         self.chkorganizeByMonthFolder1.setText(_("Organize by months"))
+
+         self.chkorganizeByYearFolder2.setText(_("Organize by years"))
+         self.chkorganizeByMonthFolder2.setText(_("Organize by months"))
+
+         self.chkorganizeByYearFolder3.setText(_("Organize by years"))
+         self.chkorganizeByMonthFolder3.setText(_("Organize by months"))
+
+         self.chkorganizeByYearFolder4.setText(_("Organize by years"))
+         self.chkorganizeByMonthFolder4.setText(_("Organize by months"))
+
+         self.chkReplace.setText(_("Replace files if they exist"))
+         self.chkOrderOthers.setText(_("Sort not listed in 'Others' folder"))
+
+         self.saveButton.setText(_(" Save"))
 
     def openExtensionWindow(self, buttonIndex):
         self.message = buttonIndex
         self.w = extensionsWindowUI(self.message)
         self.w.show()
+

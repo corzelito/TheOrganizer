@@ -9,7 +9,7 @@ def makeConfigFile():
     if not configRoot.is_file():
         config = configparser.ConfigParser()
 
-        config['Subfolders'] = {'folder1': 'Imagenes', 'folder2': 'Videos', 'folder3': 'Documentos', 'folder4': 'Otros'}
+        config['Subfolders'] = {'folder1': 'Images', 'folder2': 'Videos', 'folder3': 'Documents', 'folder4': 'Web'}
 
         config['extensions'] = {'extensionsFolder1': ".png , .jpg , .jpeg",
                                 'extensionsFolder2': ".doc , .pdf , .docx",
@@ -23,6 +23,7 @@ def makeConfigFile():
         config['Folder4'] = {'orderByYear': 'True', 'orderByMonth': 'True'}
         config['ReplaceFiles'] = {'ReplaceFiles': 'True'}
         config['OrganizeOther'] = {'OrganizeOther': 'True'}
+        config['Languages'] = {'Language': 'English'}
 
         with open('settings.ini', 'w') as configfile:
             config.write(configfile)

@@ -22,15 +22,17 @@ class UI(QMainWindow):
         self.configButton.clicked.connect(self.ConfigWindow)
         self.progressBar.setValue(0)
         self.progressBar.hide()
+        self.translateStrings()
+
 
     def getPathEntry(self):
         dialog = QFileDialog()
-        foo_dir = dialog.getExistingDirectory(self, 'Select an awesome directory')
+        foo_dir = dialog.getExistingDirectory(self, _("Select an awesome directory"))
         self.labelPathEntry.setPlainText(foo_dir)
 
     def getPathEntryOrganized(self):
         dialog = QFileDialog()
-        foo_dir = dialog.getExistingDirectory(self, 'Select an awesome directory')
+        foo_dir = dialog.getExistingDirectory(self, _("Select an awesome directory"))
         self.labelPathEntryOrganized.setPlainText(foo_dir)
 
     def organize(self):
@@ -46,7 +48,8 @@ class UI(QMainWindow):
 
         # YES = 6 // NO = 7
         if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
-            question = ctypes.windll.user32.MessageBoxW(0, "La opción 'No remplazar' está desactivada, en caso de tener archivos iguales en la carpeta de destino, se sobrescribiran, ¿Quieres continuar?", "Aviso", 4)
+            question = ctypes.windll.user32.MessageBoxW(0, _(
+                "The option 'Do not replace' is disabled, if you have the same files in the destination folder, they will be overwritten, do you want to continue?"),_("Warning"), 4)
         else:
             question = 6
 
@@ -54,17 +57,16 @@ class UI(QMainWindow):
         FileSorter.browseFiles(path, organizedFolderPath, question)
 
         if question == 6:
-            ctypes.windll.user32.MessageBoxW(0, "Se ha organizado todo correctamente", "Organizacion completada", 0)
+            ctypes.windll.user32.MessageBoxW(0, _("Everything has been organized correctly."), _("Organization completed."), 0)
 
-
+    def translateStrings(self):
+        self.choosePathEntryButton.setText(_("Explore"))
+        self.choosePathOrganizedButton.setText(_("Explore"))
+        self.organizeButton.setText(_("Organize"))
+        self.labelOrigin.setText(_("Folder to order:"))
+        self.labelOrganizedFolderPath.setText(_("Folder where it will be organized:"))
 
     def ConfigWindow(self):
         self.w = ConfigWindowUI()
         self.w.show()
 
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    GUI = UI()
-    GUI.show()
-    sys.exit(app.exec())

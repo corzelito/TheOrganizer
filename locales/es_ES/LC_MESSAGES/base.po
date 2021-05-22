@@ -1,0 +1,129 @@
+# Copyright (C) YEAR ORGANIZATION
+# Adrián Martinez <dev.adrianmartinez@gmail.com>, 2021.
+# msgfmt.py -o base.mo base
+msgid ""
+msgstr ""
+
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+# MAIN WINDOW
+msgid "Select an awesome directory"
+msgstr "Selecciona un directorio"
+
+msgid "The option 'Do not replace' is disabled, if you have the same files in the destination folder, they will be overwritten, do you want to continue?"
+msgstr "La opción 'No remplazar' está desactivada, en caso de tener archivos iguales en la carpeta de destino, se sobrescribiran, ¿Quieres continuar?"
+
+msgid "Warning"
+msgstr "Aviso"
+
+msgid "Everything has been organized correctly."
+msgstr "Se ha organizado todo correctamente."
+
+msgid "Organization completed."
+msgstr "Organización completada."
+
+msgid "Organize"
+msgstr "Organizar"
+
+msgid "Examine"
+msgstr "Explorar"
+
+msgid "Explore"
+msgstr "Explorar"
+
+msgid "Folder to order:"
+msgstr "Carpeta a ordenar:"
+
+msgid "Folder where it will be organized:"
+msgstr "Carpeta donde se organizarán los archivos:"
+
+# CONFIG WINDOW
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Save completed."
+msgstr "Guardado completado."
+
+msgid "Folder1"
+msgstr "Carpeta1"
+
+msgid "Folder2"
+msgstr "Carpeta2"
+
+msgid "Folder3"
+msgstr "Carpeta3"
+
+msgid "Folder4"
+msgstr "Carpeta4"
+
+msgid "Organize by years"
+msgstr "Organizar por años"
+
+msgid "Organize by months"
+msgstr "Organizar por meses"
+
+msgid "Replace files if they exist"
+msgstr "Reemplazar archivos si existen"
+
+msgid "Sort not listed in 'Others' folder"
+msgstr "Ordenar no incluidos en la lista en carpeta 'Otros'"
+
+msgid "All your settings have been saved correctly."
+msgstr "Todas sus configuraciones se han guardado correctamente."
+
+msgid "Save the options and restart the application to apply the changes."
+msgstr "Guarda las opciones y reinicia la aplicacion para aplicar los cambios."
+
+msgid "Restart required"
+msgstr "Reinicio requerido"
+
+msgid " Save"
+msgstr "Guardar"
+
+msgid "Save completed"
+msgstr "Guardado completado"
+
+
+# EXTENSIONS WINDOW
+msgid "Extensions"
+msgstr "Extensiones"
+
+# EXTENSIONS
+
+msgid "Archives"
+msgstr "Archivos"
+
+msgid "Code"
+msgstr "Código"
+
+msgid "Executables"
+msgstr "Ejecutables"
+
+msgid "Fonts"
+msgstr "Fuentes"
+
+msgid "Spreadsheets"
+msgstr "Hojas de cálculo"
+
+msgid "Images"
+msgstr "Imágenes"
+
+msgid "Books"
+msgstr "Libros"
+
+msgid "Presentations"
+msgstr "Presentaciones"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "All"
+msgstr "Todos"
+
