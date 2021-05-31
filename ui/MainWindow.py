@@ -36,28 +36,25 @@ class UI(QMainWindow):
         self.labelPathEntryOrganized.setPlainText(foo_dir)
 
     def organize(self):
-        path = self.labelPathEntry.toPlainText()
-        # if len(path) != 0:
-        subfolders = getSubfolders()
-        organizedFolderPath = self.labelPathEntryOrganized.toPlainText()
+        pathEntry = self.labelPathEntry.toPlainText()
+        pathEntryOrganized = self.labelPathEntryOrganized.toPlainText()
+        if len(pathEntry) != 0 and len(pathEntryOrganized) != 0:
+            organizedFolderPath = self.labelPathEntryOrganized.toPlainText()
+            # YES = 6 // NO = 7
+            if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
+                question = ctypes.windll.user32.MessageBoxW(0, _(
+                    "The option 'Do not replace' is disabled, if you have the same files in the destination folder, they will be overwritten, do you want to continue?"),_("Warning"), 4)
+            else:
+                question = 6
 
-        # Testing
-        if path == "" and organizedFolderPath == "":
-            path = "C:\\Users\\Adri\\Desktop\\pruebas"
-            organizedFolderPath = "C:\\Users\\Adri\\Desktop\\pruebas2"
+            Folder.makefolders(organizedFolderPath)
+            FileSorter.browseFiles(path, organizedFolderPath, question)
 
-        # YES = 6 // NO = 7
-        if getConfigValue("ReplaceFiles", "ReplaceFiles") == "False":
-            question = ctypes.windll.user32.MessageBoxW(0, _(
-                "The option 'Do not replace' is disabled, if you have the same files in the destination folder, they will be overwritten, do you want to continue?"),_("Warning"), 4)
+            if question == 6:
+                ctypes.windll.user32.MessageBoxW(0, _("Everything has been organized correctly."), _("Organization completed."), 0)
         else:
-            question = 6
-
-        Folder.makefolders(organizedFolderPath)
-        FileSorter.browseFiles(path, organizedFolderPath, question)
-
-        if question == 6:
-            ctypes.windll.user32.MessageBoxW(0, _("Everything has been organized correctly."), _("Organization completed."), 0)
+            ctypes.windll.user32.MessageBoxW(0, _("Fill in the fields."),
+                                             "Error", 0)
 
     def translateStrings(self):
         self.choosePathEntryButton.setText(_("Explore"))

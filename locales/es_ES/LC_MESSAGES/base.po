@@ -41,6 +41,9 @@ msgstr "Carpeta a ordenar:"
 msgid "Folder where it will be organized:"
 msgstr "Carpeta donde se organizarán los archivos:"
 
+msgid "Fill in the fields."
+msgstr "Rellene los campos."
+
 # CONFIG WINDOW
 msgid "Settings"
 msgstr "Configuración"
