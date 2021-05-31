@@ -1,8 +1,8 @@
 <h1 align="center">📚 The Organizer 📚</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
   </a>
-  <a href="https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE" target="_blank">
+  <a href="https://img.shields.io/github/license/Corzelito/TheOrganizer" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/Corzelito/TheOrganizer" />
   </a>
   <a href="https://twitter.com/corzelito" target="_blank">
