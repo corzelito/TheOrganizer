@@ -637,7 +637,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>icons/20x20/cil-arrow-bottom.png</normaloff>icons/20x20/cil-arrow-bottom.png</iconset>
+      <normaloff></normaloff></iconset>
     </property>
     <property name="iconSize">
      <size>
