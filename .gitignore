@@ -130,3 +130,4 @@ dmypy.json
 .pyre/
 .qt_for_python/uic/configWindow.py
 .qt_for_python/uic/mainWindow.py
+output/
